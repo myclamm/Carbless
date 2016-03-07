@@ -4,6 +4,34 @@ var config = require.main.require('./config.js');
 
 //Request New Account Creation Page
 var deliveryAPIService = {
+	findMenu: function (merchantId, callback) {
+
+		request.get({
+			url: 'http://www.delivery.com/api/merchant/'+merchantId+'/menu?client_id='+config.deliveryAPIClientId,
+		}, function (err, response, body) {
+			if(err){
+				console.log('error:', err)
+				return callback(err, null)
+			} else {
+				return callback(err, JSON.parse(body))
+			}
+		})
+	},
+
+	findRestaurantsByAddress: function (address, callback) {
+
+		request.get({
+			url: 'http://www.delivery.com/api/merchant/search/delivery?client_id='+config.deliveryAPIClientId+'&address=' + address,
+		}, function (err, response, body) {
+			if(err){
+				console.log('error:', err)
+				return callback(err, null)
+			} else {
+				return callback(err, JSON.parse(body))
+			}
+		})
+	},
+
 	createAddress: function (authToken, addressInfo,callback) {
 		request.post({
 			url:'https://www.delivery.com/api/customer/location',
