@@ -58,31 +58,34 @@ var deliveryAPIService = {
 		})
 	},
 
-	editAddress: function (locationId, authToken, addressInfo,callback) {
-		request.post({
-			url:'https://www.delivery.com/api/customer/location?location_id='+locationId,
-			headers: {
- 		      'Authorization': authToken
-		    },	
-			form: {   
-			    "street": addressInfo.street,  
-			    "unit_number": addressInfo.unit_number || null,
-			    "city": addressInfo.city    ,
-			    "state": addressInfo.state   ,
-			    "phone": addressInfo.phone   ,
-			    "zip_code": addressInfo.zip_code,
-			    "company": addressInfo.company || null,
-			    "cross_streets": addressInfo.cross_streets || null
-			}
-		}, function (err, response, body) {
-			if(err){
-				console.log('error: ',err)
-				return callback(err, null)
-			} else {
-				return callback(err, JSON.parse(body).location)
-			}
-		})
-	},
+	///////////////////////////////////////////////////////////////////////
+	// EDIT ADDRESS IS REDUNDANT BECAUSE CREATE ADDRESS DOES THE SAME THING
+	///////////////////////////////////////////////////////////////////////
+	// editAddress: function (locationId, authToken, addressInfo,callback) {
+	// 	request.post({
+	// 		url:'https://www.delivery.com/api/customer/location?location_id='+locationId,
+	// 		headers: {
+ // 		      'Authorization': authToken
+	// 	    },	
+	// 		form: {   
+	// 		    "street": addressInfo.street,  
+	// 		    "unit_number": addressInfo.unit_number || null,
+	// 		    "city": addressInfo.city    ,
+	// 		    "state": addressInfo.state   ,
+	// 		    "phone": addressInfo.phone   ,
+	// 		    "zip_code": addressInfo.zip_code,
+	// 		    "company": addressInfo.company || null,
+	// 		    "cross_streets": addressInfo.cross_streets || null
+	// 		}
+	// 	}, function (err, response, body) {
+	// 		if(err){
+	// 			console.log('error: ',err)
+	// 			return callback(err, null)
+	// 		} else {
+	// 			return callback(err, JSON.parse(body).location)
+	// 		}
+	// 	})
+	// },
 
 	getAccessToken: function (loginData, callback) {
 		//Retrieve temp token

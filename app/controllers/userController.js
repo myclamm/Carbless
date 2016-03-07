@@ -56,19 +56,22 @@ var UserController = {
 			res.json(addressInfo)
 		})
 	},
+	
+	///////////////////////////////////////////////////////////////////////
+	// EDIT ADDRESS IS REDUNDANT BECAUSE CREATE ADDRESS DOES THE SAME THING
+	///////////////////////////////////////////////////////////////////////
+	// editAddress: function (req, res, next) {
+	// 	var userId = req.headers.userid
+	// 	var authToken = req.headers.authorization
 
-	editAddress: function (req, res, next) {
-		var userId = req.headers.userid
-		var authToken = req.headers.authorization
-
-		UserService.editAddress(userId, authToken, req.body, function (err, addressInfo) {
-			if(err){
-				console.log('could not edit user address', err)
-				res.send(err);
-			}
-			res.json(addressInfo);
-		})
-	},
+	// 	UserService.editAddress(userId, authToken, req.body, function (err, addressInfo) {
+	// 		if(err){
+	// 			console.log('could not edit user address', err)
+	// 			res.send(err);
+	// 		}
+	// 		res.json(addressInfo);
+	// 	})
+	// },
 
 	getAddress: function (req, res, next) {
 		UserService.getAddress(req.headers.userid, req.headers.authorization, function (err, addressInfo) {

@@ -13,8 +13,8 @@ var UserService = {
 
 	findByName: function (name, callback) {
 		User.find({name:name}, function (err, user) {
-      callback(err, user);
-    });
+      	  callback(err, user);
+    	});
 	},
 
 	login: function (loginData, callback) {
@@ -105,34 +105,37 @@ var UserService = {
 			}
 		}) 
 	},
+	///////////////////////////////////////////////////////////////////////
+	// EDIT ADDRESS IS REDUNDANT BECAUSE CREATE ADDRESS DOES THE SAME THING
+	///////////////////////////////////////////////////////////////////////
+	// editAddress: function (userId, authToken, addressInfo, callback) {
+	// 	User.findById(userId, function (err, user) {
+	// 		if(err){
+	// 			callback(err, {stats:'fail', message: 'userId does not exist'})
+	// 		} else {
+	// 			var locationId = user.address.locationId;
+	// 			console.log('locationId',locationId)
+	// 			DeliveryAPIService.editAddress(locationId, authToken, addressInfo, function (err, addressData) {
+	// 				if(err){
+	// 					console.log('could not edit deliv.com address',err)
+	// 					callback(err, {status:'fail', message: err})
+	// 				} else {
+	// 					console.log('API change successful, now changing address in database', addressData)
+	// 					user.address = addressData;
+	// 					user.save(function (err) {
+	// 						if(err){
+	// 							callback(err, {status:'fail', message:'could not save address info'})
+	// 						} else {
+	// 							callback(err, user.address)
+	// 						}
+	// 					})
+	// 				}
+	// 			})
+	// 		}
+	// 	})
 
-	editAddress: function (userId, authToken, addressInfo, callback) {
-		User.findById(userId, function (err, user) {
-			if(err){
-				callback(err, {stats:'fail', message: 'userId does not exist'})
-			} else {
-				var locationId = user.address.locationId;
-				console.log('locationId',locationId)
-				DeliveryAPIService.editAddress(locationId, authToken, addressInfo, function (err, addressData) {
-					if(err){
-						console.log('could not edit deliv.com address',err)
-						callback(err, {status:'fail', message: err})
-					} else {
-						console.log('API change successful, now changing address in database', addressData)
-						user.address = addressData;
-						user.save(function (err) {
-							if(err){
-								callback(err, {status:'fail', message:'could not save address info'})
-							} else {
-								callback(err, user.address)
-							}
-						})
-					}
-				})
-			}
-		})
+	// },
 
-	},
 
 	getAddress: function (userId, callback) {
 		console.log('userId',userId)
